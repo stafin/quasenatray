@@ -14,5 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    dd(date('y-m-d H:i:s'));
+//    return view('index');
 });
