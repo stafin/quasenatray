@@ -12,10 +12,15 @@ class CommissionCurrent implements CommissionCurrentInterface
         private CommissionCurrentRepository $repository,
     )
     {
+
     }
+
 
     public function getPercentage(): float
     {
+
         return $this->repository->getPercentage();
+
     }
+
 }

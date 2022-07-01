@@ -2,7 +2,11 @@
 
 namespace App\Http\Contracts\Seller;
 
+use Illuminate\Database\Eloquent\Collection;
+
 interface SellerListInterface
 {
-    function getAll();
+
+    function getAll(): Collection;
+
 }

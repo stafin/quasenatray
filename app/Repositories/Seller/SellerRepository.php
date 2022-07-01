@@ -4,6 +4,7 @@ namespace App\Repositories\Seller;
 
 use App\Application\Seller\Contracts\SellerListRepository;
 use App\Application\Seller\Contracts\SellerPersistRepository;
+use Illuminate\Database\Eloquent\Collection;
 use App\Models\Seller;
 
 class SellerRepository implements
@@ -11,17 +12,20 @@ class SellerRepository implements
     SellerPersistRepository
 {
 
-    public function getAll()
+    public function getAll(): Collection
     {
+
         return Seller::all();
+
     }
+
 
     public function save(Seller $seller): Seller
     {
+
         $seller->save();
         return $seller;
+
     }
-
-
 
 }

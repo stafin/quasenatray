@@ -6,5 +6,7 @@ use App\Models\Order;
 
 interface OrderPersistRepository
 {
-    function save(Order $order);
+
+    function save(Order $order) : Order;
+
 }

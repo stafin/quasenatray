@@ -2,9 +2,11 @@
 
 namespace App\Http\Contracts\Order;
 
-use Ramsey\Uuid\Type\Integer;
+use Illuminate\Database\Eloquent\Collection;
 
 interface OrderListInterface
 {
-    function getOrdersFromSeller(int $sellerId);
+
+    function getOrdersFromSeller(int $sellerId): Collection;
+
 }

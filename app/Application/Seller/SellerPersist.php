@@ -9,16 +9,21 @@ use App\Models\Seller;
 
 class SellerPersist implements SellerPersistInterface
 {
+
     public function __construct(
         private SellerPersistRepository $repository,
     )
     {
+
     }
 
-    public function save(SellerCreateRequest $request)
+    public function save(SellerCreateRequest $request): Seller
     {
+
         $seller = new Seller();
         $seller->fill($request->all());
         return $this->repository->save($seller);
+
     }
+
 }

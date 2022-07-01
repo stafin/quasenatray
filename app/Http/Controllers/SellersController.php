@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Contracts\Seller\SellerListInterface;
 use App\Http\Contracts\Seller\SellerPersistInterface;
 use App\Http\Requests\SellerCreateRequest;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class SellersController extends Controller
 {
@@ -16,21 +17,50 @@ class SellersController extends Controller
         private SellerPersistInterface $persist,
     )
     {
+
     }
 
 
-    public function index(): \Illuminate\Http\JsonResponse
+    public function index(): JsonResponse
     {
 
-        return response()->json($this->list->getAll());
+        try {
+
+            return response()->json(
+                $this->list->getAll(),
+                Response::HTTP_OK
+            );
+
+        } catch (\Exception $e) {
+
+            return response()->json([
+                'error' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+
+        }
 
     }
 
 
-    public function store(SellerCreateRequest $request): \Illuminate\Http\JsonResponse
+    public function store(SellerCreateRequest $request): JsonResponse
     {
-        return response()->json($this->persist->save($request));
-    }
 
+        try {
+
+            return response()->json(
+                $this->persist->save($request),
+                Response::HTTP_CREATED
+            );
+
+        } catch (\Exception $e) {
+
+            return response()->json([
+                'error' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+
+
+        }
+
+    }
 
 }

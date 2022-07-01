@@ -6,6 +6,8 @@ use App\Http\Contracts\Commission\CommissionCurrentInterface;
 use App\Http\Contracts\Commission\CommissionListInterface;
 use App\Http\Contracts\Commission\CommissionPersistInterface;
 use App\Http\Requests\CommissionCreateRequest;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class CommissionsController extends Controller
 {
@@ -15,30 +17,68 @@ class CommissionsController extends Controller
         private CommissionCurrentInterface $current,
         private CommissionPersistInterface $persist,
     ){
+
     }
 
-    public function index()
-    {
-        return response()->json($this->list->getAll());
-    }
 
-    public function currentCommission()
+    public function index(): JsonResponse
     {
-        return response()->json($this->current->getPercentage());
-    }
 
-    public function store(CommissionCreateRequest $request)
-    {
         try {
 
-            return response()->json($this->persist->save($request));
+            return response()->json(
+                $this->list->getAll(),
+                Response::HTTP_OK
+            );
 
         } catch (\Exception $e) {
 
             return response()->json([
-                'tipo' => 'exception',
-                'mensagem' => $e->getMessage()
-            ]);
+                'error' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+
+
+        }
+
+    }
+
+
+    public function currentCommission(): JsonResponse
+    {
+
+        try {
+
+            return response()->json(
+                $this->current->getPercentage(),
+                Response::HTTP_OK
+            );
+
+        } catch (\Exception $e) {
+
+            return response()->json([
+                'error' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+
+
+        }
+
+    }
+
+
+    public function store(CommissionCreateRequest $request): JsonResponse
+    {
+        try {
+
+            return response()->json(
+                $this->persist->save($request),
+                Response::HTTP_CREATED
+            );
+
+        } catch (\Exception $e) {
+
+            return response()->json([
+                'error' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
 
         }
 

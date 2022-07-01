@@ -14,13 +14,16 @@ class CommissionPersist implements CommissionPersistInterface
         private CommissionPersistRepository $repository,
     )
     {
+
     }
+
 
     public function save(CommissionCreateRequest $request): Commission
     {
         $commission = new Commission();
-        $commission->percentage = $request->input('percentage');
+        $commission->fill($request->all());
 
         return $this->repository->save($commission);
     }
+
 }

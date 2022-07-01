@@ -4,5 +4,7 @@ namespace App\Application\Commission\Contracts;
 
 interface CommissionCurrentRepository
 {
-    function getPercentage();
+
+    function getPercentage(): float;
+
 }

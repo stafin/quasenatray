@@ -6,5 +6,7 @@ use App\Models\Commission;
 
 interface CommissionPersistRepository
 {
-    function save(Commission $commission) : Commission;
+
+    function save(Commission $commission): Commission;
+
 }

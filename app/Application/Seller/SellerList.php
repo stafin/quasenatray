@@ -4,6 +4,7 @@ namespace App\Application\Seller;
 
 use App\Application\Seller\Contracts\SellerListRepository;
 use App\Http\Contracts\Seller\SellerListInterface;
+use Illuminate\Database\Eloquent\Collection;
 
 class SellerList implements SellerListInterface
 {
@@ -12,11 +13,15 @@ class SellerList implements SellerListInterface
         private SellerListRepository $repository,
     )
     {
+
     }
 
-    public function getAll()
+
+    public function getAll(): Collection
     {
+
         return $this->repository->getAll();
+
     }
 
 }

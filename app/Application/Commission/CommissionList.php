@@ -4,7 +4,7 @@ namespace App\Application\Commission;
 
 use App\Http\Contracts\Commission\CommissionListInterface;
 use App\Application\Commission\Contracts\CommissionListRepository;
-use App\Models\Commission;
+use Illuminate\Database\Eloquent\Collection;
 
 class CommissionList implements CommissionListInterface
 {
@@ -13,10 +13,14 @@ class CommissionList implements CommissionListInterface
         private CommissionListRepository $repository,
     )
     {
+
     }
 
-    public function getAll()
+
+    public function getAll(): Collection
     {
+
         return $this->repository->getAll();
+
     }
 }
