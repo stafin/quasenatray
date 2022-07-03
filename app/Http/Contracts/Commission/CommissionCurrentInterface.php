@@ -2,9 +2,11 @@
 
 namespace App\Http\Contracts\Commission;
 
+use App\Models\Commission;
+
 interface CommissionCurrentInterface
 {
 
-    function getPercentage() : float;
+    function getCommissionCurrent(): Commission;
 
 }

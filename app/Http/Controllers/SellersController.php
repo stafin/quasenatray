@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Contracts\Seller\SellerListInterface;
 use App\Http\Contracts\Seller\SellerPersistInterface;
 use App\Http\Requests\SellerCreateRequest;
-use Illuminate\Http\JsonResponse;
+use App\Http\Resources\SellerResource;
+use App\Http\Resources\SellersWithSumCommissionCollection;
 use Illuminate\Http\Response;
+
 
 class SellersController extends Controller
 {
@@ -21,45 +23,18 @@ class SellersController extends Controller
     }
 
 
-    public function index(): JsonResponse
+    public function index(): SellersWithSumCommissionCollection
     {
 
-        try {
-
-            return response()->json(
-                $this->list->getAll(),
-                Response::HTTP_OK
-            );
-
-        } catch (\Exception $e) {
-
-            return response()->json([
-                'error' => $e->getMessage()
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-
-        }
+        return new SellersWithSumCommissionCollection($this->list->getAllWithSumCommission());
 
     }
 
 
-    public function store(SellerCreateRequest $request): JsonResponse
+    public function store(SellerCreateRequest $request): SellerResource
     {
 
-        try {
-
-            return response()->json(
-                $this->persist->save($request),
-                Response::HTTP_CREATED
-            );
-
-        } catch (\Exception $e) {
-
-            return response()->json([
-                'error' => $e->getMessage()
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-
-
-        }
+        return new SellerResource($this->persist->save($request));
 
     }
 

@@ -2,11 +2,11 @@
 
 namespace App\Application\Seller\Contracts;
 
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\Paginator;
 
 interface SellerListRepository
 {
 
-    function getAll(): Collection;
+    function getAllWithSumCommission(): Paginator;
 
 }

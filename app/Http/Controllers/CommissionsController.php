@@ -6,6 +6,9 @@ use App\Http\Contracts\Commission\CommissionCurrentInterface;
 use App\Http\Contracts\Commission\CommissionListInterface;
 use App\Http\Contracts\Commission\CommissionPersistInterface;
 use App\Http\Requests\CommissionCreateRequest;
+use App\Http\Resources\CommissionsCollection;
+use App\Http\Resources\CommissionOnlyPercentageResource;
+use App\Http\Resources\CommissionResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
@@ -21,66 +24,26 @@ class CommissionsController extends Controller
     }
 
 
-    public function index(): JsonResponse
+    public function index(): CommissionsCollection
     {
 
-        try {
-
-            return response()->json(
-                $this->list->getAll(),
-                Response::HTTP_OK
-            );
-
-        } catch (\Exception $e) {
-
-            return response()->json([
-                'error' => $e->getMessage()
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-
-
-        }
+        return new CommissionsCollection($this->list->getAll());
 
     }
 
 
-    public function currentCommission(): JsonResponse
+    public function currentCommission(): CommissionOnlyPercentageResource
     {
 
-        try {
-
-            return response()->json(
-                $this->current->getPercentage(),
-                Response::HTTP_OK
-            );
-
-        } catch (\Exception $e) {
-
-            return response()->json([
-                'error' => $e->getMessage()
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-
-
-        }
+        return new CommissionOnlyPercentageResource($this->current->getCommissionCurrent());
 
     }
 
 
-    public function store(CommissionCreateRequest $request): JsonResponse
+    public function store(CommissionCreateRequest $request): CommissionResource
     {
-        try {
 
-            return response()->json(
-                $this->persist->save($request),
-                Response::HTTP_CREATED
-            );
-
-        } catch (\Exception $e) {
-
-            return response()->json([
-                'error' => $e->getMessage()
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-
-        }
+        return new CommissionResource($this->persist->save($request));
 
     }
 

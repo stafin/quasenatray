@@ -4,7 +4,7 @@ namespace App\Repositories\Seller;
 
 use App\Application\Seller\Contracts\SellerListRepository;
 use App\Application\Seller\Contracts\SellerPersistRepository;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\Paginator;
 use App\Models\Seller;
 
 class SellerRepository implements
@@ -12,10 +12,14 @@ class SellerRepository implements
     SellerPersistRepository
 {
 
-    public function getAll(): Collection
+    public function getAllWithSumCommission(): Paginator
     {
 
-        return Seller::all();
+        return Seller::selectRaw('*,
+                (select coalesce(sum(commission_value), 0)
+                    from orders
+                    where seller_id = sellers.id) as commission')
+            ->simplePaginate();
 
     }
 

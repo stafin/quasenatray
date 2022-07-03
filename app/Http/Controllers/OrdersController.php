@@ -6,6 +6,9 @@ use App\Http\Contracts\Order\OrderListInterface;
 use App\Http\Contracts\Order\OrderPersistInterface;
 use App\Http\Requests\OrderCreateRequest;
 use App\Http\Requests\OrderListRequest;
+use App\Http\Resources\OrderResource;
+use App\Http\Resources\OrdersCollection;
+use App\Models\Order;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
@@ -20,44 +23,18 @@ class OrdersController extends Controller
 
     }
 
-    public function index(OrderListRequest $request): JsonResponse
+    public function index(OrderListRequest $request): OrdersCollection
     {
 
-        try {
-
-            return response()->json(
-                $this->list->getOrdersFromSeller($request->id),
-                Response::HTTP_OK
-            );
-
-        } catch (\Exception $e) {
-
-            return response()->json([
-                'error' => $e->getMessage()
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-
-        }
+        return new OrdersCollection($this->list->getOrdersFromSeller($request->id));
 
     }
 
 
-    public function store(OrderCreateRequest $request)
+    public function store(OrderCreateRequest $request): OrderResource
     {
 
-        try {
-
-            return response()->json(
-                $this->persist->save($request),
-                Response::HTTP_CREATED
-            );
-
-        } catch (\Exception $e) {
-
-            return response()->json([
-                'error' => $e->getMessage()
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-
-        }
+        return new OrderResource($this->persist->save($request));
 
     }
 

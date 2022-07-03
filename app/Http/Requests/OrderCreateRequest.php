@@ -16,7 +16,7 @@ class OrderCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'seller_id' => 'required|exists:sellers,id',
+            'seller_id' => 'required|numeric|exists:sellers,id',
             'order_value' => 'required|numeric|min:0.01'
         ];
     }

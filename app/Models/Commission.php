@@ -12,4 +12,5 @@ class Commission extends Model
     protected $fillable = [
         'percentage'
     ];
+
 }

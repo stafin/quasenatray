@@ -4,7 +4,7 @@ namespace App\Repositories\Order;
 
 use App\Application\Order\Contracts\OrderListRepository;
 use App\Application\Order\Contracts\OrderPersistRepository;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Pagination\Paginator;
 use App\Models\Order;
 
 class OrderRepository implements
@@ -12,12 +12,13 @@ class OrderRepository implements
     OrderPersistRepository
 {
 
-    public function getOrdersFromSeller(int $sellerId): Collection
+    public function getOrdersFromSeller(int $sellerId): Paginator
     {
 
-        return Order::where('seller_id', $sellerId)
+        return Order::with('seller', 'commission')
+            ->where('seller_id', $sellerId)
             ->orderBy('id', 'desc')
-            ->get();
+            ->simplePaginate();
 
     }
 
@@ -29,5 +30,5 @@ class OrderRepository implements
         return $order;
 
     }
-    
+
 }

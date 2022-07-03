@@ -2,11 +2,11 @@
 
 namespace App\Application\Commission\Contracts;
 
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\Paginator;
 
 interface CommissionListRepository
 {
 
-    function getAll(): Collection;
+    function getAll(): Paginator;
 
 }

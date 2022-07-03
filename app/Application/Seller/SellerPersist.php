@@ -17,11 +17,15 @@ class SellerPersist implements SellerPersistInterface
 
     }
 
+
     public function save(SellerCreateRequest $request): Seller
     {
 
         $seller = new Seller();
-        $seller->fill($request->all());
+        $seller->name   = filter_var($request->input('nome'),
+                        FILTER_SANITIZE_STRING,
+                      FILTER_FLAG_NO_ENCODE_QUOTES);
+        $seller->email  = $request->input('email');
         return $this->repository->save($seller);
 
     }

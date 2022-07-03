@@ -4,6 +4,7 @@ namespace App\Application\Commission;
 
 use App\Application\Commission\Contracts\CommissionCurrentRepository;
 use App\Http\Contracts\Commission\CommissionCurrentInterface;
+use App\Models\Commission;
 
 class CommissionCurrent implements CommissionCurrentInterface
 {
@@ -16,10 +17,10 @@ class CommissionCurrent implements CommissionCurrentInterface
     }
 
 
-    public function getPercentage(): float
+    public function getCommissionCurrent(): Commission
     {
 
-        return $this->repository->getPercentage();
+        return $this->repository->getCommissionCurrent();
 
     }
 

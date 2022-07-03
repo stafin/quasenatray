@@ -4,7 +4,7 @@ namespace App\Application\Order;
 
 use App\Application\Order\Contracts\OrderListRepository;
 use App\Http\Contracts\Order\OrderListInterface;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Pagination\Paginator;
 
 class OrderList implements OrderListInterface
 {
@@ -17,7 +17,7 @@ class OrderList implements OrderListInterface
     }
 
 
-    public function getOrdersFromSeller(int $sellerId): Collection
+    public function getOrdersFromSeller(int $sellerId): Paginator
     {
 
         return $this->repository->getOrdersFromSeller($sellerId);

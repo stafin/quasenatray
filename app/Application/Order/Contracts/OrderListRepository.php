@@ -2,11 +2,11 @@
 
 namespace App\Application\Order\Contracts;
 
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Pagination\Paginator;
 
 interface OrderListRepository
 {
 
-    function getOrdersFromSeller(int $sellerId): Collection;
+    function getOrdersFromSeller(int $sellerId): Paginator;
 
 }

@@ -3,6 +3,7 @@
 namespace App\Application\Order;
 
 use App\Application\Order\Contracts\OrderPersistRepository;
+use App\Http\Contracts\Commission\CommissionCurrentInterface;
 use App\Http\Contracts\Order\OrderPersistInterface;
 use App\Http\Requests\OrderCreateRequest;
 use App\Models\Order;
@@ -10,12 +11,18 @@ use App\Models\Order;
 class OrderPersist implements OrderPersistInterface
 {
 
-    public function __construct(
+    private float $currentCommission;
+    private int   $currentCommissionId;
 
+    public function __construct(
+        private CommissionCurrentInterface $commission,
         private OrderPersistRepository $repository,
 
     )
     {
+
+        $this->currentCommission    = $this->commission->getCommissionCurrent()->getAttribute('percentage');
+        $this->currentCommissionId  = $this->commission->getCommissionCurrent()->getAttribute('id');
 
     }
 
@@ -26,10 +33,22 @@ class OrderPersist implements OrderPersistInterface
         $order = new Order();
         $order->seller_id = $request->input('seller_id');
         $order->order_value = $request->input('order_value');
-        $order->commission_id = 2;
-        $order->commission_value = 500;
+        $order->commission_id = $this->currentCommissionId;
+        $order->commission_value = self::calculateCommissionValue($request->input('order_value'));
 
         return $this->repository->save($order);
+
+    }
+
+
+    private function calculateCommissionValue($orderValue): float
+    {
+
+        if($orderValue > 0 && $this->currentCommission > 0)
+            return round((($orderValue * $this->currentCommission) / 100),
+                2);
+
+        return 0;
 
     }
 

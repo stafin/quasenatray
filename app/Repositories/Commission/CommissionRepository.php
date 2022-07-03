@@ -5,7 +5,7 @@ namespace App\Repositories\Commission;
 use App\Application\Commission\Contracts\CommissionCurrentRepository;
 use App\Application\Commission\Contracts\CommissionListRepository;
 use App\Application\Commission\Contracts\CommissionPersistRepository;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\Paginator;
 use App\Models\Commission;
 
 class CommissionRepository implements
@@ -15,18 +15,18 @@ class CommissionRepository implements
 {
 
 
-    public function getAll(): Collection
+    public function getAll(): Paginator
     {
 
-        return Commission::all();
+        return Commission::orderBy('id', 'desc')->simplePaginate();
 
     }
 
 
-    public function getPercentage(): float
+    public function getCommissionCurrent(): Commission
     {
 
-        return 8.5;
+        return Commission::orderBy('id', 'desc')->first();
 
     }
 

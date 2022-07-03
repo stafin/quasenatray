@@ -15,4 +15,18 @@ class Order extends Model
         'commission_id',
         'commission_value'
     ];
+
+
+    public function seller()
+    {
+        return $this->belongsTo(Seller::class);
+    }
+
+
+    public function commission()
+    {
+        return $this->belongsTo(Commission::class);
+    }
+
+
 }

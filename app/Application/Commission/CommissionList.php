@@ -4,7 +4,7 @@ namespace App\Application\Commission;
 
 use App\Http\Contracts\Commission\CommissionListInterface;
 use App\Application\Commission\Contracts\CommissionListRepository;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\Paginator;
 
 class CommissionList implements CommissionListInterface
 {
@@ -17,7 +17,7 @@ class CommissionList implements CommissionListInterface
     }
 
 
-    public function getAll(): Collection
+    public function getAll(): Paginator
     {
 
         return $this->repository->getAll();

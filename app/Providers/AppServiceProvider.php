@@ -57,6 +57,7 @@ class AppServiceProvider extends ServiceProvider
             'App\Application\Seller\SellerPersist'
         );
 
+
         //Repositories Sellers
         $this->app->bind(
             'App\Application\Seller\Contracts\SellerListRepository',
