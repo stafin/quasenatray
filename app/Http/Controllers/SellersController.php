@@ -7,7 +7,6 @@ use App\Http\Contracts\Seller\SellerPersistInterface;
 use App\Http\Requests\SellerCreateRequest;
 use App\Http\Resources\SellerResource;
 use App\Http\Resources\SellersWithSumCommissionCollection;
-use Illuminate\Http\Response;
 
 
 class SellersController extends Controller

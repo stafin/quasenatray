@@ -57,6 +57,11 @@ class AppServiceProvider extends ServiceProvider
             'App\Application\Seller\SellerPersist'
         );
 
+        $this->app->bind(
+            'App\Http\Contracts\Seller\SellersWithOrdersDayInterface',
+            'App\Application\Seller\SellersWithOrdersDay'
+        );
+
 
         //Repositories Sellers
         $this->app->bind(
@@ -66,6 +71,11 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(
             'App\Application\Seller\Contracts\SellerPersistRepository',
+            'App\Repositories\Seller\SellerRepository'
+        );
+
+        $this->app->bind(
+            'App\Application\Seller\Contracts\SellersWithOrdersDayRepository',
             'App\Repositories\Seller\SellerRepository'
         );
 

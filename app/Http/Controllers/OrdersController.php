@@ -8,9 +8,6 @@ use App\Http\Requests\OrderCreateRequest;
 use App\Http\Requests\OrderListRequest;
 use App\Http\Resources\OrderResource;
 use App\Http\Resources\OrdersCollection;
-use App\Models\Order;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response;
 
 class OrdersController extends Controller
 {

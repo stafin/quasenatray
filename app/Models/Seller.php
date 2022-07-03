@@ -17,4 +17,12 @@ class Seller extends Model
         'email',
     ];
 
+
+    public function ordersDay()
+    {
+        return $this->hasMany(Order::class)
+            ->with('commission')
+            ->whereDate('created_at', date('Y-m-d'));
+    }
+
 }

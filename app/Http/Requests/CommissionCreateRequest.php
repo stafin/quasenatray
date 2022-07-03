@@ -15,9 +15,11 @@ class CommissionCreateRequest extends FormRequest
 
     public function rules(): array
     {
+
         return [
             'percentage' => 'required|numeric|min:0|max:99.99',
         ];
+
     }
 
 }

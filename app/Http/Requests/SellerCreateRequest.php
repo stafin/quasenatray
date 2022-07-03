@@ -15,10 +15,12 @@ class SellerCreateRequest extends FormRequest
 
     public function rules(): array
     {
+
         return [
             'nome'  => 'required|string|min:3|max:120',
             'email' => 'required|unique:sellers|email|max:120'
         ];
+
     }
 
 }

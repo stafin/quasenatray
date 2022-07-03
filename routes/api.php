@@ -6,6 +6,8 @@ use App\Http\Controllers\CommissionsController;
 use App\Http\Controllers\SellersController;
 use App\Http\Controllers\OrdersController;
 
+use App\Http\Controllers\MailController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -33,3 +35,5 @@ Route::get('/sellers', [SellersController::class, 'index']);
 //Orders
 Route::post('/orders', [OrdersController::class, 'store']);
 Route::get('/orders/{id}', [OrdersController::class, 'index'])->name('getOrders');
+
+Route::get('/mailreport', [MailController::class, 'sendMailSellersOrdersReport']);

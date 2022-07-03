@@ -4,12 +4,15 @@ namespace App\Repositories\Seller;
 
 use App\Application\Seller\Contracts\SellerListRepository;
 use App\Application\Seller\Contracts\SellerPersistRepository;
+use App\Application\Seller\Contracts\SellersWithOrdersDayRepository;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Collection;
 use App\Models\Seller;
 
 class SellerRepository implements
     SellerListRepository,
-    SellerPersistRepository
+    SellerPersistRepository,
+    SellersWithOrdersDayRepository
 {
 
     public function getAllWithSumCommission(): Paginator
@@ -29,6 +32,14 @@ class SellerRepository implements
 
         $seller->save();
         return $seller;
+
+    }
+
+
+    public function getSellersWithOrdersDay(): Collection
+    {
+
+        return Seller::with('ordersDay')->get();
 
     }
 

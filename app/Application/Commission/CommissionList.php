@@ -23,4 +23,5 @@ class CommissionList implements CommissionListInterface
         return $this->repository->getAll();
 
     }
+
 }

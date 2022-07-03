@@ -20,10 +20,12 @@ class CommissionPersist implements CommissionPersistInterface
 
     public function save(CommissionCreateRequest $request): Commission
     {
+
         $commission = new Commission();
         $commission->fill($request->all());
 
         return $this->repository->save($commission);
+
     }
 
 }

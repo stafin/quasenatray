@@ -9,8 +9,6 @@ use App\Http\Requests\CommissionCreateRequest;
 use App\Http\Resources\CommissionsCollection;
 use App\Http\Resources\CommissionOnlyPercentageResource;
 use App\Http\Resources\CommissionResource;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response;
 
 class CommissionsController extends Controller
 {

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\MailController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,3 +19,9 @@ Route::get('/', function () {
     //dd(date('y-m-d H:i:s'));
     return view('welcome');
 });
+
+//Route::get('/email', function (){
+//   return new \App\Mail\SellersOrdersReport();
+//});
+
+Route::get('/email', [MailController::class, 'sendMailSellersOrdersReport']);
