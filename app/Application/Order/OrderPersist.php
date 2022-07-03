@@ -31,10 +31,10 @@ class OrderPersist implements OrderPersistInterface
     {
 
         $order = new Order();
-        $order->seller_id = $request->input('seller_id');
-        $order->order_value = $request->input('order_value');
+        $order->seller_id = $request->input('vendedor_id');
+        $order->order_value = $request->input('venda_valor');
         $order->commission_id = $this->currentCommissionId;
-        $order->commission_value = self::calculateCommissionValue($request->input('order_value'));
+        $order->commission_value = self::calculateCommissionValue($request->input('venda_valor'));
 
         return $this->repository->save($order);
 

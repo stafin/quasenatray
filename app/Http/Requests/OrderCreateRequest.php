@@ -17,8 +17,8 @@ class OrderCreateRequest extends FormRequest
     {
 
         return [
-            'seller_id' => 'required|numeric|exists:sellers,id',
-            'order_value' => 'required|numeric|min:0.01'
+            'vendedor_id' => 'required|numeric|exists:sellers,id',
+            'venda_valor' => 'required|numeric|min:0.01'
         ];
 
     }
