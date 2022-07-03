@@ -10,10 +10,11 @@ Suas vendas do dia <strong>{{date('d/m/Y')}} </strong>.
 | Id Venda      | Valor Venda   | Comissão  | Valor Comissão  |
 |:-------------:| -------------:| ---------:| ---------------:|
 @foreach($seller->ordersDay as $order)
+<?php
+$orderTotal += $order->order_value;
+$commissionTotal += $order->commission_value;
+?>
 | {{$order->id}} | R$ {{number_format($order->order_value, 2, ',', '.')}} | {{number_format($order->commission->percentage, 2, ',', '.')}}% | R$ {{number_format($order->commission_value, 2, ',', '.')}} |
-
-<?php $orderTotal += $order->order_value;?>
-<?php $commissionTotal += $order->commission_value;?>
 @endforeach
 @endcomponent
 

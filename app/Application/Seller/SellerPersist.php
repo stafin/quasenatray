@@ -22,9 +22,7 @@ class SellerPersist implements SellerPersistInterface
     {
 
         $seller = new Seller();
-        $seller->name   = filter_var($request->input('nome'),
-                        FILTER_SANITIZE_STRING,
-                      FILTER_FLAG_NO_ENCODE_QUOTES);
+        $seller->name   = strip_tags($request->input('nome'));
         $seller->email  = $request->input('email');
         return $this->repository->save($seller);
 

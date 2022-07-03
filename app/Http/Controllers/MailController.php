@@ -18,6 +18,8 @@ class MailController extends Controller
     public function sendMailSellersOrdersReport(): void
     {
 
+//        dd($this->sellersWithOrdersDay->getSellersWithOrdersDay());
+
         foreach ($this->sellersWithOrdersDay->getSellersWithOrdersDay() as $seller)
         {
             SendMailSellersOrdersReport::dispatch($seller);
