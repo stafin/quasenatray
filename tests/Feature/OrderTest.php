@@ -38,7 +38,7 @@ class OrderTest extends TestCase
 
         $response
             ->assertStatus(201)
-            ->assertJsonPath('data.venda_valor', 251.98);
+            ->assertJsonPath('data.venda_valor', "251,98");
 
     }
 
