@@ -31,9 +31,11 @@ Route::get('/commissions/current', [CommissionsController::class, 'currentCommis
 //Sellers
 Route::post('/sellers', [SellersController::class, 'store']);
 Route::get('/sellers', [SellersController::class, 'index']);
+Route::get('/sellers/listall', [SellersController::class, 'listAll']);
 
 //Orders
 Route::post('/orders', [OrdersController::class, 'store']);
-Route::get('/orders/{id}', [OrdersController::class, 'index'])->name('getOrders');
+Route::get('/orders', [OrdersController::class, 'listOrdersAll']);
+Route::get('/ordersfromseller/{id}', [OrdersController::class, 'listOrdersFromSeller']);
 
 Route::get('/mailreport', [MailController::class, 'sendMailSellersOrdersReport']);

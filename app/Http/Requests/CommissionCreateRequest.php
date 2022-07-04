@@ -17,7 +17,7 @@ class CommissionCreateRequest extends FormRequest
     {
 
         return [
-            'percentage' => 'required|numeric|min:0|max:99.99',
+            'porcentagem' => 'required|numeric|min:0|max:99.99',
         ];
 
     }

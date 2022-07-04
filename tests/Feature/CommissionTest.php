@@ -30,12 +30,12 @@ class CommissionTest extends TestCase
     {
 
         $response = $this->postJson('/api/commissions', [
-            "percentage" => "8.5"
+            "porcentagem" => "8.5"
         ]);
 
         $response
             ->assertStatus(201)
-            ->assertJsonPath('data.porcentagem', '8.5');
+            ->assertJsonPath('data.porcentagem', '8,50');
 
     }
 

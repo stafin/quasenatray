@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CommissionResource extends JsonResource
@@ -17,8 +18,8 @@ class CommissionResource extends JsonResource
 
         return [
             'id'            => $this->id,
-            'porcentagem'   => $this->percentage,
-            'criado_em'     => $this->created_at
+            'porcentagem'   => number_format($this->percentage, 2, ',', '.'),
+            'criado_em'     => Carbon::create($this->created_at)->format("d/m/Y H:i")
         ];
 
     }

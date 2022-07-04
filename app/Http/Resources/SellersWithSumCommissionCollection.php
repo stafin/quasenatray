@@ -22,7 +22,7 @@ class SellersWithSumCommissionCollection extends ResourceCollection
                     'id'         => $data->id,
                     'nome'       => $data->name,
                     'email'      => $data->email,
-                    'comissao'   => $data->commission
+                    'comissao'   => number_format($data->commission, 2, ',', '.')
                 ];
             });
 

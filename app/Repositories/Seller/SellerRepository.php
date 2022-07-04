@@ -22,7 +22,8 @@ class SellerRepository implements
                 (select coalesce(sum(commission_value), 0)
                     from orders
                     where seller_id = sellers.id) as commission')
-            ->simplePaginate();
+            ->orderBy('id', 'desc')
+            ->simplePaginate(5);
 
     }
 
@@ -39,7 +40,16 @@ class SellerRepository implements
     public function getSellersWithOrdersDay(): Collection
     {
 
-        return Seller::with('ordersDay')->get();
+        return Seller::with('ordersDay')
+            ->orderBy('id', 'desc')
+            ->get();
+
+    }
+
+    public function getSellerListAll(): Collection
+    {
+
+        return Seller::orderBy('name', 'asc')->get();
 
     }
 

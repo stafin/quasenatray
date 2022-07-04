@@ -9,4 +9,6 @@ interface OrderListInterface
 
     function getOrdersFromSeller(int $sellerId): Paginator;
 
+    function getOrdersAll(): Paginator;
+
 }

@@ -18,7 +18,7 @@ class CommissionRepository implements
     public function getAll(): Paginator
     {
 
-        return Commission::orderBy('id', 'desc')->simplePaginate();
+        return Commission::orderBy('id', 'desc')->simplePaginate(5);
 
     }
 

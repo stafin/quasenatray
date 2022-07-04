@@ -10,10 +10,19 @@ use Tests\TestCase;
 class OrderTest extends TestCase
 {
 
+    public function test_check_list_orders_from_sellers_response(): void
+    {
+
+        $response = $this->get('/api/ordersfromseller/1');
+        $response->assertStatus(200);
+
+    }
+
+
     public function test_check_list_orders_response(): void
     {
 
-        $response = $this->get('/api/orders/1');
+        $response = $this->get('/api/orders');
         $response->assertStatus(200);
 
     }

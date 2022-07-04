@@ -20,6 +20,15 @@ class SellerTest extends TestCase
     }
 
 
+    public function test_check_list_all_sellers_response(): void
+    {
+
+        $response = $this->get('/api/sellers/listall');
+        $response->assertStatus(200);
+
+    }
+
+
     public function test_create_seller_response(): void
     {
 

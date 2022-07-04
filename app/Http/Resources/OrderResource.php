@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class OrderResource extends JsonResource
@@ -20,10 +21,10 @@ class OrderResource extends JsonResource
             'vendedor_id'   => $this->seller->id,
             'nome'          => $this->seller->name,
             'email'         => $this->seller->email,
-            'comissao_per'  => $this->commission->percentage,
-            'comissao_valor'=> $this->commission_value,
-            'venda_valor'   => $this->order_value,
-            'criado_em'     => $this->created_at
+            'comissao_per'  => number_format($this->commission->percentage, 2, ',', '.'),
+            'comissao_valor'=> number_format($this->commission_value, 2, ',', '.'),
+            'venda_valor'   => number_format($this->order_value, 2, ',', '.'),
+            'criado_em'     => Carbon::create($this->created_at)->format("d/m/Y H:i")
         ];
 
     }

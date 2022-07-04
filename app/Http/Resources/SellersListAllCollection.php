@@ -2,10 +2,9 @@
 
 namespace App\Http\Resources;
 
-use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class CommissionsCollection extends ResourceCollection
+class SellersListAllCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -15,15 +14,12 @@ class CommissionsCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-
         return
             $this->collection->map(function($data) {
                 return [
-                    'id'            => $data->id,
-                    'porcentagem'   => number_format($data->percentage, 2, ',', '.'),
-                    'criado_em'     => Carbon::create($data->created_at)->format("d/m/Y H:i")
+                    'id'         => $data->id,
+                    'nome'       => $data->name
                 ];
             });
-
     }
 }

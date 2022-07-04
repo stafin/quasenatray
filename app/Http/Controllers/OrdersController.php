@@ -8,6 +8,7 @@ use App\Http\Requests\OrderCreateRequest;
 use App\Http\Requests\OrderListRequest;
 use App\Http\Resources\OrderResource;
 use App\Http\Resources\OrdersCollection;
+use App\Http\Resources\OrdersFromSellersCollection;
 
 class OrdersController extends Controller
 {
@@ -20,10 +21,18 @@ class OrdersController extends Controller
 
     }
 
-    public function index(OrderListRequest $request): OrdersCollection
+    public function listOrdersFromSeller(OrderListRequest $request): OrdersFromSellersCollection
     {
 
-        return new OrdersCollection($this->list->getOrdersFromSeller($request->id));
+        return new OrdersFromSellersCollection($this->list->getOrdersFromSeller($request->id));
+
+    }
+
+
+    public function listOrdersAll(): OrdersCollection
+    {
+
+        return new OrdersCollection($this->list->getOrdersAll());
 
     }
 

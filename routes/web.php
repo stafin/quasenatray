@@ -16,12 +16,6 @@ use App\Http\Controllers\MailController;
 */
 
 Route::get('/', function () {
-    //dd(date('y-m-d H:i:s'));
-    return view('welcome');
+    abort(404);
 });
 
-//Route::get('/email', function (){
-//   return new \App\Mail\SellersOrdersReport();
-//});
-
-Route::get('/email', [MailController::class, 'sendMailSellersOrdersReport']);

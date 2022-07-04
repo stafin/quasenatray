@@ -6,6 +6,7 @@ use App\Http\Contracts\Seller\SellerListInterface;
 use App\Http\Contracts\Seller\SellerPersistInterface;
 use App\Http\Requests\SellerCreateRequest;
 use App\Http\Resources\SellerResource;
+use App\Http\Resources\SellersListAllCollection;
 use App\Http\Resources\SellersWithSumCommissionCollection;
 
 
@@ -34,6 +35,14 @@ class SellersController extends Controller
     {
 
         return new SellerResource($this->persist->save($request));
+
+    }
+
+
+    public function listAll(): SellersListAllCollection
+    {
+
+        return new SellersListAllCollection($this->list->getSellerListAll());
 
     }
 

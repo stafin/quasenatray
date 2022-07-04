@@ -24,4 +24,12 @@ class OrderList implements OrderListInterface
 
     }
 
+
+    public function getOrdersAll(): Paginator
+    {
+
+        return $this->repository->getOrdersAll();
+
+    }
+
 }

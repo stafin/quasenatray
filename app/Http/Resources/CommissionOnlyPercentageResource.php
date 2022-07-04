@@ -16,7 +16,7 @@ class CommissionOnlyPercentageResource extends JsonResource
     {
 
         return [
-            'porcentagem'  => $this->percentage,
+            'porcentagem'  => number_format($this->percentage, 2, ',', '.'),
         ];
 
     }

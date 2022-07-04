@@ -4,6 +4,7 @@ namespace App\Application\Seller;
 
 use App\Application\Seller\Contracts\SellerListRepository;
 use App\Http\Contracts\Seller\SellerListInterface;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\Paginator;
 
 class SellerList implements SellerListInterface
@@ -23,5 +24,14 @@ class SellerList implements SellerListInterface
         return $this->repository->getAllWithSumCommission();
 
     }
+
+
+    public function getSellerListAll(): Collection
+    {
+
+        return $this->repository->getSellerListAll();
+
+    }
+
 
 }

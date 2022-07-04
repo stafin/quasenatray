@@ -22,7 +22,7 @@ class CommissionPersist implements CommissionPersistInterface
     {
 
         $commission = new Commission();
-        $commission->fill($request->all());
+        $commission->percentage = $request->input('porcentagem');
 
         return $this->repository->save($commission);
 

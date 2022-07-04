@@ -18,7 +18,17 @@ class OrderRepository implements
         return Order::with('seller', 'commission')
             ->where('seller_id', $sellerId)
             ->orderBy('id', 'desc')
-            ->simplePaginate();
+            ->simplePaginate(5);
+
+    }
+
+
+    public function getOrdersAll(): Paginator
+    {
+
+        return Order::with('seller', 'commission')
+            ->orderBy('id', 'desc')
+            ->simplePaginate(5);
 
     }
 
